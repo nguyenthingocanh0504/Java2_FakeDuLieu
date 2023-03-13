@@ -3,6 +3,8 @@ import com.github.javafaker.Faker;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -26,5 +28,20 @@ public class Main {
 
         humanList.stream().forEach(p-> System.out.println(p));
 
+        //co bao nhieu nam tren 18 tuoi
+        long count=humanList.stream().filter(new Predicate<Human>() {
+            @Override
+            public boolean test(Human human) {
+                    return human.getGender()==0&&human.getAge()>18;
+            }
+        }).count();
+        System.out.println(count);
+
+        //co bao nhieu nu va ten dem la 'Thi'
+
+        long count1=humanList.stream().filter(h->h.getGender()==0&&h.getFirstName().contains("Thị")).count();
+        System.out.println("So nguoi nu va ten dem la thi: "+count1);
+
+//        humanList.stream().filter(h->h.getLastName())
     }
 }

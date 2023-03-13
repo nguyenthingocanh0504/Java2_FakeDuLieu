@@ -1,4 +1,4 @@
-public class Human {
+public class Human implements Comparable<Human>{
     private  int id;
     private String firstName;
     private String lastName;
@@ -80,5 +80,16 @@ public class Human {
                 ", age=" + age +
                 ", salary=" + salary +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Human o) {
+        if (this.getSalary()>o.getSalary())
+        {
+            return 1;
+        }
+        else{
+            return -1;
+        }
     }
 }
